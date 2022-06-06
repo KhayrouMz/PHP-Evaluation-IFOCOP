@@ -94,10 +94,9 @@ require_once('./includeAdmin/header.php');
                 <option>Choisissez le ID de la salle</option>
                 <?php while( $salle = $afficheSalles->fetch(PDO::FETCH_ASSOC) ): ?>
                         
-                    <?php foreach( $salle as $key => $value): ?>
-                        <option class="text-dark" value=" <?= $value ?>"<?= ($id_salle == $value) ? 'selected' : "" ?>><?= $salle['id_salle'].'-'.$salle['titre'].'-'.$salle['ville'] ?></option>
-                    <?php endforeach ; ?>
-                <?php endwhile ; ?>
+                        <option class="text-dark" value=" <?= $salle['id_salle'] ?>"<?= ($id_salle == $salle['id_salle']) ? 'selected' : "" ?>><?= $salle['id_salle'].'-'.$salle['titre'].'-'.$salle['ville'] ?></option>
+
+                        <?php endwhile ; ?>
             </select>
         </div>
         
@@ -151,6 +150,22 @@ require_once('./includeAdmin/header.php');
     </tbody>
 </table>
 
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                Supprimer article
+            </div>
+            <div class="modal-body">
+                Etes-vous sur de vouloir retirer cet article de votre panier ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+                <a class="btn btn-danger btn-ok">Supprimer</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 

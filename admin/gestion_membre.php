@@ -37,15 +37,19 @@ if(isset($_GET['action'])){
         if(!isset($_POST['civilite']) || $_POST['civilite'] != "f" && $_POST['civilite'] != 'm'){
             $erreur .= '<div class="alert alert-danger" role="alert">Erreur format civilité !</div>';
         }
+        if(!isset($_POST['statut']) || $_POST['statut'] != "0" && $_POST['statut'] != '1'){
+            $erreur .= '<div class="alert alert-danger" role="alert">Erreur format statut !</div>';
+        }
         if(empty($erreur)){
             if($_GET['action'] == "update"){
-                $modifUser = $pdo->prepare("UPDATE membre SET id_membre = :id_membre , pseudo = :pseudo , nom = :nom , prenom = :prenom , email = :email , civilite = :civilite WHERE id_membre = :id_membre ");
+                $modifUser = $pdo->prepare("UPDATE membre SET id_membre = :id_membre , pseudo = :pseudo , nom = :nom , prenom = :prenom , email = :email , civilite = :civilite, statut =:statut WHERE id_membre = :id_membre ");
                 $modifUser->bindValue(':id_membre', $_POST['id_membre'], PDO::PARAM_INT);
                 $modifUser->bindValue(':pseudo', $_POST['pseudo'], PDO::PARAM_STR);
                 $modifUser->bindValue(':nom', $_POST['nom'], PDO::PARAM_STR);
                 $modifUser->bindValue(':prenom', $_POST['prenom'], PDO::PARAM_STR);
                 $modifUser->bindValue(':email', $_POST['email'], PDO::PARAM_STR);
                 $modifUser->bindValue(':civilite', $_POST['civilite'], PDO::PARAM_STR);
+                $modifUser->bindValue(':statut', $_POST['statut'], PDO::PARAM_INT);
                 $modifUser->execute();
 
                 $queryUser = $pdo->query("SELECT pseudo FROM membre WHERE id_membre = '$_GET[id_membre] ' ");
@@ -60,13 +64,14 @@ if(isset($_GET['action'])){
                     </div>';
             }else{
 
-                $inscrireUser = $pdo->prepare("INSERT INTO membre(pseudo, mdp, nom, prenom, email, civilite, date_enregistrement) VALUES (:pseudo, :mdp, :nom, :prenom, :email, :civilite, NOW())");
+                $inscrireUser = $pdo->prepare("INSERT INTO membre(pseudo, mdp, nom, prenom, email, civilite, statut, date_enregistrement) VALUES (:pseudo, :mdp, :nom, :prenom, :email, :civilite, :statut, NOW())");
                 $inscrireUser->bindValue(':pseudo', $_POST['pseudo'], PDO::PARAM_STR);
                 $inscrireUser->bindValue(':mdp', $_POST['mdp'], PDO::PARAM_STR);
                 $inscrireUser->bindValue(':nom', $_POST['nom'], PDO::PARAM_STR);
                 $inscrireUser->bindValue(':prenom', $_POST['prenom'], PDO::PARAM_STR);
                 $inscrireUser->bindValue(':email', $_POST['email'], PDO::PARAM_STR);
                 $inscrireUser->bindValue(':civilite', $_POST['civilite'], PDO::PARAM_STR);
+                $inscrireUser->bindValue(':statut', $_POST['statut'], PDO::PARAM_INT);
 
                 $inscrireUser->execute();
 
@@ -93,6 +98,7 @@ if(isset($_GET['action'])){
     $prenom = (isset($userActuel['prenom'])) ? $userActuel['prenom'] : "";
     $email = (isset($userActuel['email'])) ? $userActuel['email'] : "";
     $civilite = (isset($userActuel['civilite'])) ? $userActuel['civilite'] : "";
+    $statut = (isset($userActuel['statut'])) ? $userActuel['statut'] : "";
     
     if($_GET['action'] == 'delete'){
 
@@ -119,44 +125,56 @@ require_once('includeAdmin/header.php');
 
     <div class="row">
         <div class="col-md-4 mt-5">
-        <label class="form-label" for="pseudo"><div class="badge badge-dark text-wrap">Pseudo</div></label>
+        <label class="form-label" for="pseudo"><div class="badge badge-dark text-dark">Pseudo</div></label>
         <input class="form-control" type="text" name="pseudo" value="<?= $pseudo ?>" id="pseudo"  placeholder="Pseudo">
         </div>
 
         
         <?php if($_GET['action'] == 'add'): ?>
         <div class="col-md-4 mt-5">
-        <label class="form-label" for="mdp"><div class="badge badge-dark text-wrap">Mot de passe</div></label>
+        <label class="form-label" for="mdp"><div class="badge badge-dark text-dark">Mot de passe</div></label>
         <input class="form-control" type="password" name="mdp" id="mdp" placeholder="Mot de passe">
         </div>
         <?php endif ?>
         
         
         <div class="col-md-4 mt-5">
-        <label class="form-label" for="email"><div class="badge badge-dark text-wrap">Email</div></label>
+        <label class="form-label" for="email"><div class="badge badge-dark text-dark">Email</div></label>
         <input class="form-control" type="email" name="email" value="<?= $email ?>" id="email"  placeholder="Email">
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-4 mt-5">
-        <label class="form-label" for="nom"><div class="badge badge-dark text-wrap">Nom</div></label>
+        <label class="form-label" for="nom"><div class="badge badge-dark text-dark">Nom</div></label>
         <input class="form-control" type="text" name="nom" value="<?= $nom ?>" id="nom"  placeholder="Nom">
         </div>
 
         <div class="col-md-4 mt-5">
-        <label class="form-label" for="prenom"><div class="badge badge-dark text-wrap">Prénom</div></label>
+        <label class="form-label" for="prenom"><div class="badge badge-dark text-dark">Prénom</div></label>
         <input class="form-control" type="text" name="prenom"  value="<?= $prenom ?>" id="prenom"  placeholder="Prénom">
         </div>
 
-        <div class="col-md-4 mt-4">
-            <p><div class="badge badge-dark text-wrap">Civilité</div></p>
+        <div class="col-md-4 mt-4 " style="width: 20% ;">
+            <p><div class="badge badge-dark text-dark">Civilité</div></p>
 
             <input type="radio" name="civilite" id="civilite1" value="f" <?= ($civilite  == 'f') ? 'checked' : '' ?> >
             <label class="mx-2" for="civilite1">Femme</label>
 
             <input type="radio" name="civilite" id="civilite2" value="m" <?= ($civilite  == 'm') ? 'checked' : '' ?>>
             <label class="mx-2" for="civilite2">Homme</label>
+
+        </div>
+        <div class="col-md-4 mt-5" style="width: 12% ;">
+            <label class="mx-2 mb-2" for="statut"><div class="badge badge-dark text-dark">Statut</div></label>
+
+            <?php $selectStatut = $pdo->query("SELECT * FROM membre ORDER BY statut ASC") ?>
+            <?PHP $statutMembre = $selectStatut->fetch(PDO::FETCH_ASSOC) ?>
+
+            <select class="form-select" name="statut" id="statut">
+                            <option class="text-dark" value=" 0 "<?= ( $statut == '0') ? 'selected' : "" ?>>Membre</option>
+                            <option class="text-dark" value=" 1 "<?= ( $statut == '1') ? 'selected' : "" ?>>Admin</option>
+            </select>
         </div>
     </div>
 
@@ -206,8 +224,6 @@ require_once('includeAdmin/header.php');
     </tbody>
 </table>
 
-<!-- modal suppression codepen https://codepen.io/lowpez/pen/rvXbJq -->
-
 <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -225,4 +241,4 @@ require_once('includeAdmin/header.php');
     </div>
 </div>
 
-<?php require_once('includeAdmin/footer.php');
+<?php require_once('includeAdmin/footer.php'); ?>

@@ -52,7 +52,7 @@ require_once('./include/header.php');
 
 <!--  -->
 
-<form class="my-5" method="POST" action="">
+<form class="my-5" method="POST" action="" style="width: 100%;height:60vh;">
 
     <div class="col-md-4 offset-md-4 my-4">
 

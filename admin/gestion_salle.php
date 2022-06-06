@@ -126,15 +126,7 @@ require_once('includeAdmin/header.php');
 <?= $erreur ?>
 <?= $content ?>
 
-<?php if(!isset($_GET['action']) && !isset($_GET['page'])): ?>
-<div class="blockquote alert alert-dismissible fade show mt-5 shadow border border-warning rounded" role="alert">
-    <p>Gérez ici votre base de données des salles</p>
-    <p>Vous pouvez modifier leurs données, ajouter ou supprimer un salle</p>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
-<?php endif ?>
+
 
 <!-- explication dans gestion_membres.php, car meêm code -->
 <?php if(isset($_GET['action'])): ?>
@@ -271,7 +263,7 @@ require_once('includeAdmin/header.php');
                 <?php endif ?>
             <?php endforeach ?>
             <td><a href='?action=update&id_salle=<?= $salle['id_salle'] ?>'><i class="bi bi-pencil-square text-dark" style="font-size: 1.5rem;"></i></a></td>
-            <td><a data-href="?action=delete&id_salle=<?= $salle['id_salle'] ?>" data-toggle="modal" data-target="#confirm-delete"><i class="bi bi-trash text-danger" style="font-size: 1.5rem;"></i></a></td>
+            <td><a href="?action=delete&id_salle=<?= $salle['id_salle'] ?>" data-toggle="modal" data-target="#confirm-delete"><i class="bi bi-trash text-danger" style="font-size: 1.5rem;"></i></a></td>
         </tr>
         <?php endwhile ?>
     </tbody>

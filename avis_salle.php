@@ -26,6 +26,13 @@ if ($_POST){
             $avisUser->bindValue(':id_salle', $avisActuel['id_salle'], PDO::PARAM_INT);
             $avisUser->bindValue(':id_membre', $_SESSION['membre']['id_membre'], PDO::PARAM_INT);
             $avisUser->execute();
+
+            $content .= '<div class="alert alert-success alert-dismissible fade show mt-5" role="alert">
+            <strong>Félicitations !</strong> Insertion du produit réussie !
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>';
         }
     }
 }
@@ -38,6 +45,11 @@ require_once('./include/header.php');
 ?>
 
 
+<h2 class="d-flex justify-content-center align-items-center my-5 mb-5">Votre commentaire pour la salle : <span class="d-flex justify-content-center align-items-center badge text-bg-dark fw-semibold ms-3"><?= ' '.$ficheProduit['titre'] ?></span> </h2>
+
+
+
+<?= $content ?>
 <?= $erreur ?>
 
 

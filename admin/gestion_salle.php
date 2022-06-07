@@ -14,7 +14,7 @@ if(isset($_GET['action'])){
         if(!isset($_POST['titre']) || strlen($_POST['titre']) < 2 || strlen($_POST['titre']) > 20){
             $erreur .= '<div class="alert alert-danger" role="alert">Erreur format titre !</div>';
         }
-        if(!isset($_POST['description']) || strlen($_POST['description']) < 2 || strlen($_POST['description']) > 100){
+        if(!isset($_POST['description']) || strlen($_POST['description']) < 2 || strlen($_POST['description']) > 900){
             $erreur .= '<div class="alert alert-danger" role="alert">Erreur format description !</div>';
         }
         if(!isset($_POST['pays']) || $_POST['pays'] != "france"){
@@ -207,7 +207,7 @@ require_once('includeAdmin/header.php');
         <label class="form-label" for="photo"><div class="badge badge-dark text-dark mt-3">Photo</div></label>
         <input class="form-control" type="file" name="photo" id="photo" placeholder="Photo">
         </div>
-        <!-- ----------------- -->
+
         <?php if(!empty($photo)): ?>
             <div class="mt-4">
                 <p>Vous pouvez changer d'image
@@ -215,10 +215,10 @@ require_once('includeAdmin/header.php');
                 </p>
             </div>
         <?php endif; ?>
-        <!-- ci-dessous, un input hidden (aucun besoin de l'afficher) pour récupérer la valeur dans le nouveau name "photoActuelle" pour l'envoyer via le form $_POST à la ligne 60 pour affecter $photo_bdd -->
+
         <input type="hidden" name="photoActuelle" value="<?= $photo ?>">
     </div>
-    <!-- -------------------- -->
+
 </div>
 
 <div class="col-md-1 mt-5">
@@ -228,7 +228,7 @@ require_once('includeAdmin/header.php');
 </form>
 <?php endif ?>
 
-<!-- explication dans gestion_membres.php, car meêm code -->
+
 <?php $querysalles = $pdo->query("SELECT id_salle FROM salle") ?>
 <h2 class="py-5">Nombre de salles en base de données: <?= $querysalles->rowCount() ?></h2>
 

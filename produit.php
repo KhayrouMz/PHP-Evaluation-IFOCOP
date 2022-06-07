@@ -9,15 +9,10 @@ require_once('./include/header.php');
 
 ?>
 
+<h2 class="d-flex justify-content-center align-items-center my-5 mb-5"><span class="d-flex justify-content-center align-items-center badge text-bg-dark fw-semibold ms-3">Toutes les catégories</span> </h2>
 
 
-<h2 class="d-flex justify-content-center align-items-center my-5 mb-5">Liste des salles de type : <span class="d-flex justify-content-center align-items-center badge text-bg-dark fw-semibold ms-3"><?= ' '.$titreCategorie['categorie'] ?></span> </h2>
-
-</div>
-
-
-<?php if (isset($_GET['categorie']))  : ?>
-
+<?php $afficheSalle = $pdo->query("SELECT id_produit, photo, titre, categorie, prix, description, date_arrivee, date_depart FROM salle as a, produit as b WHERE a.id_salle = b.id_salle"); ?>
 <div class="container">
     <div class="row d-flex justify-content-around align-items-center m-auto">
         <?php while($produit = $afficheSalle->fetch(PDO::FETCH_ASSOC)) : ?>
@@ -40,11 +35,6 @@ require_once('./include/header.php');
         <?php endwhile ; ?>
     </div>
 </div>
-<?php endif ; ?>
-
-
-
-
 
 
 

@@ -42,6 +42,13 @@ if (isset($_GET['action'])){
                 $ajouterProduit->bindValue(':prix', $_POST['prix'], PDO::PARAM_INT);
                 // $ajouterProduit->bindValue(':etat', $_POST['etat'], PDO::PARAM_STR);
                 $ajouterProduit->execute();
+
+                $content .= '<div class="alert alert-success alert-dismissible fade show mt-5" role="alert">
+                <strong>Félicitations !</strong> Insertion du produit réussie !
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>';
             }
         }
     }
@@ -144,7 +151,7 @@ require_once('./includeAdmin/header.php');
                 <?php endif ?>
             <?php endforeach ?>
             <td><a href='?action=update&id_produit=<?= $produit['id_produit'] ?>'><i class="bi bi-pencil-square text-dark" style="font-size: 1.5rem;"></i></a></td>
-            <td><a data-href="?action=delete&id_produit=<?= $produit['id_produit'] ?>" data-toggle="modal" data-target="#confirm-delete"><i class="bi bi-trash text-danger" style="font-size: 1.5rem;"></i></a></td>
+            <td><a href="?action=delete&id_produit=<?= $produit['id_produit'] ?>" data-toggle="modal" data-target="#confirm-delete"><i class="bi bi-trash text-danger" style="font-size: 1.5rem;"></i></a></td>
         </tr>
         <?php endwhile ?>
     </tbody>

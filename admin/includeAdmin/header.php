@@ -10,8 +10,8 @@
   <title>Document</title>
 </head>
 <body>
-  <header>
-  <nav class="navbar navbar-expand-lg bg-dark d-flex justify-content-end" style="height: 8vh ;">
+  <header class="position-fixed" style="height: 8vh ; top: 0 ; right: 0 ; width:100%; z-index:999;">
+  <nav class="navbar navbar-expand-lg bg-dark d-flex justify-content-end position-fixed" style="height: 8vh ; top: 0 ; right: 0 ; width:100%; z-index:999;">
     <div class=" me-5" style="padding-right: 10em;">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -29,7 +29,7 @@
                 <li><a class="dropdown-item fw-semibold" href="<?= URL ?>admin/gestion_salle.php">Gestion des salles</a></li>
                 <li><a class="dropdown-item fw-semibold" href="<?= URL ?>admin/gestion_produit.php">Gestion des produits</a></li>
                 <li><a class="dropdown-item fw-semibold" href="<?= URL ?>admin/gestion_avis.php">Gestion des avis</a></li>
-                <li><a class="dropdown-item fw-semibold" href="#">Gestion des commandes</a></li>
+                <li><a class="dropdown-item fw-semibold" href="<?= URL ?>admin/gestion_commande.php">Gestion des commandes</a></li>
             </ul>
           </div>
         </div>
@@ -37,4 +37,4 @@
     </div>
   </nav>
   </header>
-  <main class="container">
+  <main class="container" style="margin-top :6rem;">

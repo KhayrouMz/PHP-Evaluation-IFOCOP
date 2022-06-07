@@ -218,7 +218,7 @@ require_once('includeAdmin/header.php');
             <?php }
             } ?>
             <td><a href='?action=update&id_membre=<?= $user['id_membre'] ?>'><i class="bi bi-pencil-square text-dark" style="font-size: 1.5rem;"></i></a></td>
-            <td><a data-href="?action=delete&id_membre=<?= $user['id_membre'] ?>" data-toggle="modal" data-target="#confirm-delete"><i class="bi bi-trash text-danger" style="font-size: 1.5rem;"></i></a></td>
+            <td><a href="?action=delete&id_membre=<?= $user['id_membre'] ?>" data-toggle="modal" data-target="#confirm-delete"><i class="bi bi-trash text-danger" style="font-size: 1.5rem;"></i></a></td>
         </tr>
         <?php endwhile ?>
     </tbody>

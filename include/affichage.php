@@ -25,6 +25,19 @@ if (isset($_GET['id_produit'])){
     
 }
 if (isset($_GET['id_produit'])){
-    $afficheAvis = $pdo->query("SELECT*FROM avis") ;
+    $afficheAvis = $pdo->query("SELECT*FROM avis WHERE id_salle IN (SELECT id_salle FROM produit)") ;
     $avis = $afficheAvis->fetch(PDO::FETCH_ASSOC);
 }
+
+
+
+
+
+if (isset($_GET['id_membre'])){
+
+    
+    $afficheReservation = $pdo->query("SELECT * FROM salle as a, produit as b WHERE a.id_salle = b.id_salle ");
+    $reservation = $afficheReservation->fetch(PDO::FETCH_ASSOC);
+    
+    
+    }

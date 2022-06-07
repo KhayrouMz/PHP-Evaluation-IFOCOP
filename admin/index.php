@@ -22,11 +22,11 @@ require_once('includeAdmin/header.php');
 
         <h1 class="my-5 text-center">Accueil Admin</h1>
         <?= $validate ?>
-        <h2 class="text-center my-5">Bonjour <?= $_SESSION['membre']['pseudo'] ?></h2>
+        <h2 class="text-center my-5">Bonjour <span class="badge text-bg-dark fw-semibold"><?= $_SESSION['membre']['pseudo'] ?></span></h2>
         
         <div class="row justify-content-around my-5">
                 <img class='img-fluid' src="./img/back_office.webp" alt="Image du Back Office" loading="lazy">
         </div>
 
 
-<?php require_once('includeAdmin/footer.php');
+<?php require_once('includeAdmin/footer.php'); ?>

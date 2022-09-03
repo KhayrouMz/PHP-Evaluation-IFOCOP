@@ -79,6 +79,6 @@ require_once('affichage.php');
     </nav>
 </header>
 
-<main class="container" style="margin-top :3rem;">
+<main class="container" style="margin-top :4rem;">
 
 

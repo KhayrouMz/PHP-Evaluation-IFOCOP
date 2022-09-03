@@ -64,7 +64,7 @@ require_once('include/header.php');
 <div>
     <p class="mt-5" style="font-size: 1.5rem ;">Autre produits</p>
     <hr class="container">
-    <?php $afficheSalle = $pdo->query("SELECT * FROM salle as a, produit as b WHERE a.id_salle = b.id_salle");?>
+    <?php $afficheSalle = $pdo->query("SELECT * FROM salle as a, produit as b WHERE a.id_salle = b.id_salle ORDER BY a.id_salle ASC LIMIT 4");?>
         <div class="row flex-row d-flex justify-content-between align-items-center">
         <?php while ($produit = $afficheSalle->fetch(PDO::FETCH_ASSOC)) : ?>
         

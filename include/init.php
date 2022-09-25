@@ -6,9 +6,11 @@ session_start();
 
 
 
-define('RACINE_SITE', $_SERVER['DOCUMENT_ROOT']. './php/lokisalle/');
+define('RACINE_SITE', $_SERVER['DOCUMENT_ROOT']. './php/php%20site%20dynamique/PHP-Evaluation-IFOCOP/');
 
-define('URL', 'http://localhost/php/lokisalle/');
+define('URL', 'http://localhost/php/php%20site%20dynamique/PHP-Evaluation-IFOCOP/');
+
+
 
 
 

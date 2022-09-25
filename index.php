@@ -26,7 +26,7 @@ require_once('./include/header.php');
 </div>
 
 <!--  -->
-<?php $afficheAvisSalle = $pdo->query("SELECT * FROM salle as a, avis as b WHERE a.id_salle = b.id_salle") ;
+<?php $afficheAvisSalle = $pdo->query("SELECT * FROM salle as a, avis as b WHERE a.id_salle = b.id_salle ORDER BY a.id_salle ASC LIMIT 3") ;
 ?>
 <div class="row d-flex justify-content-around align-items-center m-auto mt-5 mb-5">
     <?php while($avisSalle = $afficheAvisSalle->fetch(PDO::FETCH_ASSOC)) : ?>

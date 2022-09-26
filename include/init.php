@@ -6,9 +6,9 @@ session_start();
 
 
 
-define('RACINE_SITE', $_SERVER['DOCUMENT_ROOT']. './php/php%20site%20dynamique/PHP-Evaluation-IFOCOP/');
+define('RACINE_SITE', $_SERVER['DOCUMENT_ROOT']. './php/phpsitedynamique/PHPEvaluationIFOCOP/');
 
-define('URL', 'http://localhost/php/php%20site%20dynamique/PHP-Evaluation-IFOCOP/');
+define('URL', 'http://localhost/php/phpsitedynamique/PHPEvaluationIFOCOP/');
 
 
 

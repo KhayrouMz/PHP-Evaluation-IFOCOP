@@ -24,10 +24,15 @@ require_once('include/header.php');
             <h1 class="text-primary fw-semibold me-3"><?= $ficheProduit['categorie']. ' ' . $ficheProduit['titre'] ?> </h1>
             <span class=" ms-4 fs-4"> <span class="fs-4 badge text-bg-primary fw-semibold"> <?= ' '. $avis['note'] ?></span> / 5 </span>
         </div>
+        <?php if (internauteConnecte() || internauteConnecteAdmin()) : ?>
         <a href="reservation.php?id_membre=<?= $_SESSION['membre']['id_membre'] ?>" >
-
             <button type="submit" class="btn btn-outline-primary">Réserver</button>
 
+        </a>
+        <?php else : ?>
+        <a href="connexion.php" >
+            <button type="submit" class="btn btn-outline-primary">Réserver</button>
+        <?php endif ?>
         </a>
     </div>
     <hr class="container">
